@@ -29,6 +29,7 @@
     "tailwindcss": "^4.3.3",
     "typescript": "^5.9.3",
     "vite": "^8.2.1",
+    "node-emoji": "^2.2.0",
     "postcss": "^8.5.26"
   },
   "dependencies": {
@@ -39,8 +40,8 @@
   "type": "module",
   "scripts": {
     "types": "payload generate:types",
-    "dev": "next dev --webpack",
-    "build": "next build --webpack",
+    "dev": "bun --bun next dev --webpack",
+    "build": "bun --bun next build --webpack",
     "start": "next start"
   }
 }

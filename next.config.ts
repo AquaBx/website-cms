@@ -12,6 +12,7 @@ const config: NextConfig = {
         project: './src/project.inlang',
         outdir: './src/paraglide',
         emitTsDeclarations: true,
+        strategy: ["cookie", "baseLocale"],
       })
     );
     return config;

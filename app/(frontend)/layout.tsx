@@ -1,9 +1,18 @@
 import type { Metadata } from "next";
 // import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { getLocale, setLocale } from '@/paraglide/runtime.js';
-
+import React, { cache } from "react";
+import {
+  baseLocale,
+  cookieName,
+  getLocale,
+  isLocale,
+  Locale,
+  overwriteGetLocale,
+} from "@/paraglide/runtime";
 import Navbar from "@/components/Navbar";
+import LangSelector from "@/components/LangSelector";
+import { cookies, headers } from "next/headers";
 
 // const geistSans = Geist({
 //   variable: "--font-geist-sans",
@@ -21,11 +30,26 @@ export const metadata: Metadata = {
   robots: "noindex"
 };
 
+const ssrLocale = cache((): { locale: Locale } => { return { locale: baseLocale } });
+overwriteGetLocale(() => ssrLocale().locale)
+
+async function getSSRLocale(): Promise<Locale> {
+  const cookieStore = await cookies()
+  const cookie = cookieStore.get(cookieName)
+  if (cookie !== undefined && isLocale(cookie.value)) {
+    return cookie.value as Locale
+  }
+  return baseLocale
+}
+
 export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
+  ssrLocale().locale = await getSSRLocale()
+
   return (
     <html
       lang={getLocale()}
@@ -41,6 +65,8 @@ export default async function RootLayout({
                [-webkit-mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]
                print:hidden"
         ></div>
+
+        <LangSelector></LangSelector>
 
         <Navbar></Navbar>
 
