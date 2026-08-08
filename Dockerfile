@@ -7,6 +7,7 @@ COPY . .
 RUN bun install --frozen-lockfile
 
 WORKDIR /build/node_modules/adapter-bun
+RUN bun install
 RUN bun run build
 
 WORKDIR /build
