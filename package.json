@@ -38,6 +38,7 @@
   },
   "type": "module",
   "scripts": {
+    "types": "payload generate:types",
     "dev": "next dev --webpack",
     "build": "next build --webpack",
     "start": "next start"

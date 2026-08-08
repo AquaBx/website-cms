@@ -250,10 +250,12 @@ export interface Timeline {
  * via the `definition` "projects".
  */
 export interface Project {
-  title: string;
   id: string;
+  title: string;
+  githubId: string;
   tags?: (string | Tag)[] | null;
   url?: string | null;
+  stars?: number | null;
   content?: {
     root: {
       type: string;
@@ -449,9 +451,10 @@ export interface TimelineSelect<T extends boolean = true> {
  */
 export interface ProjectsSelect<T extends boolean = true> {
   title?: T;
-  id?: T;
+  githubId?: T;
   tags?: T;
   url?: T;
+  stars?: T;
   content?: T;
   updatedAt?: T;
   createdAt?: T;
