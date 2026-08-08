@@ -30,7 +30,7 @@ export default buildConfig({
   globals: [Globals],
   collections: [Users, Media, Posts, Tags, Timeline, Projects],
   editor: lexicalEditor(),
-  secret: process.env.PAYLOAD_SECRET || '',
+  secret: process.env.WEBSITE_SECRET || '',
   typescript: {
     outputFile: path.resolve(dirname, 'payload-types.ts'),
   },

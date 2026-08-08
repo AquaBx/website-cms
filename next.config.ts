@@ -1,6 +1,7 @@
 import type { NextConfig } from 'next';
 import { createRequire } from 'node:module';
 import { paraglideWebpackPlugin } from "@inlang/paraglide-js";
+import { withPayload } from '@payloadcms/next/withPayload'
 
 const require = createRequire(import.meta.url);
 
@@ -18,4 +19,4 @@ const config: NextConfig = {
   adapterPath: require.resolve('adapter-bun'),
 };
 
-export default config;
+export default withPayload(config);
