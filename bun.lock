@@ -29,6 +29,7 @@
         "@vitejs/plugin-react": "^6.0.5",
         "@vitejs/plugin-rsc": "^0.5.34",
         "adapter-bun": "https://github.com/nextjs/adapter-bun",
+        "postcss": "^8.5.26",
         "react": "^19.2.8",
         "react-dom": "^19.2.8",
         "react-server-dom-webpack": "^19.2.8",

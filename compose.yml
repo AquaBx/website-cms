@@ -1,11 +1,13 @@
 services:
   web:
     build: .
-    ports:
-      - "3000:3000"
+    # ports:
+    #   - "3000:3000"
     environment:
       - WEBSITE_SECRET=${WEBSITE_SECRET}
       - DATABASE_URL=${DATABASE_URL}
 
   mongodb:
+    ports:
+      - "27017:27017"
     image: mongo
