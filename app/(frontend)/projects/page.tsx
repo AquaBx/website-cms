@@ -9,8 +9,8 @@ export default async function Home() {
   const payload = await getPayload({ config })
   const projects = await payload.find({
     collection: 'projects',
-    locale: getLocale()
-
+    locale: getLocale(),
+    limit:9999999,
     // req, // passing req is recommended
   })
 

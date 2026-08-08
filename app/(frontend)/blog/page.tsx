@@ -9,7 +9,8 @@ export default async function () {
   const payload = await getPayload({ config })
   const posts = await payload.find({
     collection: 'posts',
-    locale: getLocale()
+    locale: getLocale(),
+    limit:9999999,
   })
 
   return (

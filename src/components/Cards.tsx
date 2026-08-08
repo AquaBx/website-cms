@@ -39,7 +39,7 @@ export function TimelineCard({ element }: { element: Timeline }) {
                     className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-slate-400 bg-slate-50 px-2 py-1 rounded-md"
                 >
                     <Icon src={Calendar} className="size-3" />
-                    {FormattedDate(element.startDate)} — {FormattedDate(element.endDate || m.today())}
+                    {FormattedDate(element.startDate)} — {element.endDate ? FormattedDate(element.endDate) : m.today()}
                 </div>
             </div>
         </div>

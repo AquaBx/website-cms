@@ -15,11 +15,11 @@ const CATEGORY_STYLES = {
     color: "bg-yellow-400/30 text-yellow-600 border-yellow-600",
     icon: BriefcaseBusiness,
   },
-  study: {
+  education: {
     color: "bg-green-400/30 text-green-600 border-green-600",
     icon: GraduationCap,
   },
-  contest: {
+  competition: {
     color: "bg-red-400/30 text-red-600 border-red-600",
     icon: Swords,
   },
@@ -34,7 +34,8 @@ export default async function Home() {
   const payload = await getPayload({ config })
   const projects = await payload.find({
     collection: 'timeline',
-    locale: getLocale()
+    locale: getLocale(),
+    limit:9999999,
     // req, // passing req is recommended
   })
 
