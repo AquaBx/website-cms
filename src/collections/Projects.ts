@@ -5,6 +5,18 @@ export const Projects: CollectionConfig = {
   slug: 'projects',
   labels: { singular: 'Projet', plural: 'Projets' },
   admin: { useAsTitle: 'title' },
+  access: {
+    read: ({ req: { user } }) => {
+      if (user) {
+        return true
+      }
+      return {
+        shown: {
+          equals: true,
+        }
+      }
+    },
+  },
   fields: [
     {
       name: 'title',
@@ -27,6 +39,11 @@ export const Projects: CollectionConfig = {
     {
       name: 'url',
       type: 'text',
+    },
+    {
+      name: 'shown',
+      type: 'checkbox',
+      defaultValue: false
     },
     {
       name: 'stars',
