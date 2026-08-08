@@ -1,0 +1,11 @@
+services:
+  web:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      - PAYLOAD_SECRET=${PAYLOAD_SECRET}
+      - DATABASE_URL=${DATABASE_URL}
+
+  mongodb:
+    image: mongo

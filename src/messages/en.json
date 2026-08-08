@@ -1,0 +1,40 @@
+{
+	"$schema": "https://inlang.com/schema/inlang-message-format",
+	"description": "I am Tom Chauvel and I am {age} years old. Since my childhood I've been interested in science, especially computer science. To graduate in this field, I have been studying at the ESIR since 2021, at the University of Rennes (my heart's city).",
+	"home": "Home",
+	"timeline": "Timeline",
+	"projects": "Projects",
+	"gallery": "Gallery",
+	"blog": "Blog",
+	"cv": "CV",
+	"music": "Music",
+	"today": "Today",
+	"month": [
+		{
+			"declarations": [
+				"input count",
+				"local countPlural = count: plural"
+			],
+			"selectors": [
+				"countPlural"
+			],
+			"match": {
+				"countPlural=one": "1 month",
+				"countPlural=other": "{count} months"
+			}
+		}
+	],
+	"title": "AquaBx",
+	"work": "Professional experience",
+	"contests": "Programming contests",
+	"studies": "Studies",
+	"volunteering": "Volunteering",
+	"filter_owners": "Filter by owner",
+	"owned_projects": "Owned projects",
+	"organisation_projects": "Organization projects",
+	"school_projects": "School projects",
+	"contributions": "Contributions",
+	"completed_only": "Completed only",
+	"filter_types": "Types & Status",
+	"filters": "Filters"
+}

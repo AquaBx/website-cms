@@ -1,0 +1,44 @@
+{
+  "name": "my-app",
+  "version": "0.1.0",
+  "private": true,
+  "devDependencies": {
+    "@payloadcms/next": "^3.87.1",
+    "@payloadcms/richtext-lexical": "^3.87.1",
+    "@payloadcms/translations": "^3.87.1",
+    "@steeze-ui/heroicons": "^2.4.2",
+    "@steeze-ui/lucide-icons": "^1.4.1",
+    "@steeze-ui/react-icon": "^1.0.5",
+    "@steeze-ui/simple-icons": "^1.10.1",
+    "@steeze-ui/solid-icon": "^1.1.0",
+    "@tailwindcss/forms": "^0.5.11",
+    "@tailwindcss/postcss": "^4.3.3",
+    "@tailwindcss/typography": "^0.5.20",
+    "@tailwindcss/vite": "^4.3.3",
+    "adapter-bun": "https://github.com/nextjs/adapter-bun",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
+    "react-server-dom-webpack": "^19.2.8",
+    "sharp": "^0.35.3",
+    "@inlang/paraglide-js": "^2.23.2",
+    "@types/node": "^26.2.0",
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.4",
+    "@vitejs/plugin-react": "^6.0.5",
+    "@vitejs/plugin-rsc": "^0.5.34",
+    "tailwindcss": "^4.3.3",
+    "typescript": "^5.9.3",
+    "vite": "^8.2.1"
+  },
+  "dependencies": {
+    "@payloadcms/db-mongodb": "^3.87.1",
+    "payload": "^3.87.1",
+    "next": "^16.3.0"
+  },
+  "type": "module",
+  "scripts": {
+    "dev": "payload generate:types && next dev",
+    "build": "next build",
+    "start": "next start"
+  }
+}

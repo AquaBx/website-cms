@@ -1,0 +1,40 @@
+{
+	"$schema": "https://inlang.com/schema/inlang-message-format",
+	"description": "Je m'appelle Tom Chauvel et j'ai {age} ans. Depuis mon enfance, je m'intéresse aux sciences et plus particulièrement à l'informatique. Pour obtenir un diplôme dans ce domaine, j'étudie à l'ESIR depuis 2021, à l'Université de Rennes (ma ville de cœur).",
+	"home": "Accueil",
+	"timeline": "Timeline",
+	"projects": "Projets",
+	"blog": "Blog",
+	"gallery": "Galerie",
+	"cv": "CV",
+	"music": "Musique",
+	"today": "Aujourd'hui",
+	"month": [
+		{
+			"declarations": [
+				"input count",
+				"local countPlural = count: plural"
+			],
+			"selectors": [
+				"countPlural"
+			],
+			"match": {
+				"countPlural=one": "1 mois",
+				"countPlural=other": "{count} mois"
+			}
+		}
+	],
+	"title": "AquaBx",
+	"work": "Expériences professionelles",
+	"volunteering": "Bénévolat",
+	"studies": "Études",
+	"contests": "Concours de programmation",
+	"filter_owners": "Filtrer par propriétaire",
+	"owned_projects": "Projets personnels",
+	"organisation_projects": "Projets d'organisation",
+	"school_projects": "Projets d'école",
+	"contributions": "Contributions",
+	"completed_only": "Complétés uniquement",
+	"filter_types": "Types & Statut",
+	"filters": "Filtres"
+}
