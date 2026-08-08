@@ -38,7 +38,7 @@
   "type": "module",
   "scripts": {
     "dev": "payload generate:types && next dev",
-    "build": "next build",
+    "build": "next build --webpack",
     "start": "next start"
   }
 }
