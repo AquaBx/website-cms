@@ -8,10 +8,15 @@ export const dynamic = 'force-dynamic'
 export default async function Home() {
   const payload = await getPayload({ config })
   const projects = await payload.find({
+    where: {
+      shown: {
+        equals: true,
+      }
+    },
     collection: 'projects',
     locale: getLocale(),
-    limit:9999999,
-    // req, // passing req is recommended
+    pagination: false,
+    overrideAccess: false,
   })
 
   return (

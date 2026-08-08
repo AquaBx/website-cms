@@ -10,7 +10,8 @@ export default async function () {
   const posts = await payload.find({
     collection: 'posts',
     locale: getLocale(),
-    limit: 9999999,
+    pagination: false,
+    overrideAccess: false,
   })
 
   return (

@@ -35,8 +35,8 @@ export default async function Home() {
   const projects = await payload.find({
     collection: 'timeline',
     locale: getLocale(),
-    limit:9999999,
-    // req, // passing req is recommended
+    pagination: false,
+    overrideAccess: false,
   })
 
   return (
