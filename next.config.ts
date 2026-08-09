@@ -7,6 +7,10 @@ const require = createRequire(import.meta.url);
 
 const config: NextConfig = {
   webpack: (config) => {
+    config.module.rules.push({
+      test: /\.wasm$/,
+      type: 'asset/resource',
+    });
     config.plugins.push(
       paraglideWebpackPlugin({
         project: './src/project.inlang',

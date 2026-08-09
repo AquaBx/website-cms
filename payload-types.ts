@@ -255,22 +255,9 @@ export interface Project {
   githubId: string;
   tags?: (string | Tag)[] | null;
   url?: string | null;
+  shown?: boolean | null;
   stars?: number | null;
-  content?: {
-    root: {
-      type: string;
-      children: {
-        type: any;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  } | null;
+  content?: string | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -454,6 +441,7 @@ export interface ProjectsSelect<T extends boolean = true> {
   githubId?: T;
   tags?: T;
   url?: T;
+  shown?: T;
   stars?: T;
   content?: T;
   updatedAt?: T;

@@ -62,7 +62,8 @@ export function ProjectCard({ content, title, createdAt, id, url, tags, ...el }:
 
             <div className="mb-2">
                 <p className="text-slate-600 line-clamp-3">
-                    <RichText data={content as any}></RichText>
+                    {content}
+                    {/* <RichText data={ as any}></RichText> */}
                 </p>
             </div>
 

@@ -32,7 +32,7 @@ const CATEGORY_STYLES = {
 export const dynamic = 'force-dynamic'
 export default async function Home() {
   const payload = await getPayload({ config })
-  const projects = await payload.find({
+  const timelineEvents = await payload.find({
     collection: 'timeline',
     locale: getLocale(),
     pagination: false,
@@ -54,7 +54,7 @@ export default async function Home() {
           className="absolute left-5 top-0 bottom-0 w-1 bg-slate-200 -translate-x-1/2"
         ></div>
 
-        {projects.docs.map(element => {
+        {timelineEvents.docs.map(element => {
           const choice =
             CATEGORY_STYLES[element.type as keyof typeof CATEGORY_STYLES] || CATEGORY_STYLES.default
           return (
