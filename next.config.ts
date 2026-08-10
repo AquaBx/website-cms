@@ -8,8 +8,8 @@ const require = createRequire(import.meta.url);
 const config: NextConfig = {
   webpack: (config) => {
     config.module.rules.push({
-      test: /\.wasm$/,
-      type: 'asset/resource',
+      test: /\.typ$/,
+      type: 'asset/source',
     });
     config.plugins.push(
       paraglideWebpackPlugin({
