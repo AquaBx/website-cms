@@ -33,10 +33,8 @@ export default async function () {
   if (!photoUrl) {
     throw new Error("L'URL de la photo est introuvable");
   }
-
-  const headersList = await headers();
-
-  const response = await fetch(headersList.get('host') + photoUrl);
+  const heads = await headers();
+  const response = await fetch(heads.get('x-origin') + photoUrl);
 
   if (!response.ok) {
     throw new Error(`Échec du chargement de l'image : ${response.statusText}`);
