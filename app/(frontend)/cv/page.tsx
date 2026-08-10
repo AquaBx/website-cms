@@ -2,11 +2,10 @@ import { getPayload } from 'payload'
 import config from '@payload-config'
 import { m } from "@/paraglide/messages";
 import { getLocale } from "@/paraglide/runtime";
-import { BlogCard } from "@/components/Cards";
 import Typst from '@/components/Typst/Typst';
-import { Media, Project, Timeline } from '@payload-types';
-import { headers } from 'next/headers';
+import { Media } from '@payload-types';
 import { projectBlock, timelineBlock, toTypstObject } from '@/components/Typst/cv';
+import path from 'path';
 
 export const dynamic = 'force-dynamic'
 export default async function () {
@@ -28,25 +27,19 @@ export default async function () {
   ])
 
 
-  const photoUrl = (globals.photo as Media)?.url;
+  const photo = globals.photo as Media;
 
-  if (!photoUrl) {
-    throw new Error("L'URL de la photo est introuvable");
-  }
-  const heads = await headers();
-  const response = await fetch(heads.get('x-origin') + photoUrl);
-
-  if (!response.ok) {
-    throw new Error(`Échec du chargement de l'image : ${response.statusText}`);
+  if (!photo || !photo.filename) {
+    throw new Error("La photo ou son nom de fichier est introuvable");
   }
 
-  const arrayBuffer = await response.arrayBuffer();
-  const avatar = new Uint8Array(arrayBuffer);
+  const filePath = path.join(process.cwd(), 'media', photo.filename);
+  const file = Bun.file(filePath);
+  const avatar = await file.bytes();
 
-
-const mailObj = {"icon":"envelope", name:globals.mail, link:`mailto:${globals.mail}`}
-const phoneObj = {"icon":"phone", name:globals.phone, link:`tel:${globals.phone}`}
-const addessObj = {"icon":"house", name:globals.address, link:`https://maps.apple.com/?q=:${globals.address}`}
+  const mailObj = { "icon": "envelope", name: globals.mail, link: `mailto:${globals.mail}` }
+  const phoneObj = { "icon": "phone", name: globals.phone, link: `tel:${globals.phone}` }
+  const addessObj = { "icon": "house", name: globals.address, link: `https://maps.apple.com/?q=:${globals.address}` }
 
   const main = `
 #import "template.typ": entry_item,header,section_title
@@ -57,7 +50,7 @@ const addessObj = {"icon":"house", name:globals.address, link:`https://maps.appl
   fill: white,
 )
 
-#header((url:"/avatar.png",dx:0%,dy:0%,scale:1.1),"${globals.name}","${globals.name}", ${toTypstObject([mailObj,phoneObj,addessObj,...globals.socials])})
+#header((url:"/avatar.png",dx:0%,dy:0%,scale:1.1),"${globals.name}","${globals.name}", ${toTypstObject([mailObj, phoneObj, addessObj, ...globals.socials])})
 
 #block(
 width: 100%,
