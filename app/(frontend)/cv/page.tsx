@@ -1,18 +1,19 @@
 import { getPayload } from 'payload'
 import config from '@payload-config'
-import { m } from "@/paraglide/messages";
-import { getLocale } from "@/paraglide/runtime";
-import Typst from '@/components/Typst/Typst';
-import { Media } from '@payload-types';
-import { projectBlock, timelineBlock, toTypstObject } from '@/components/Typst/cv';
-import path from 'path';
+import { m } from "@/paraglide/messages"
+import { getLocale } from "@/paraglide/runtime"
+import { Media } from '@payload-types'
+import path from 'path'
+import CVBuilder from '@/components/Typst/CVBuilder'
 
 export const dynamic = 'force-dynamic'
-export default async function () {
+
+export default async function Page() {
   const payload = await getPayload({ config })
+  const locale = getLocale()
 
   const commonOptions = {
-    locale: getLocale(),
+    locale,
     pagination: false as const,
     overrideAccess: true,
   }
@@ -26,57 +27,43 @@ export default async function () {
     payload.find({ collection: 'timeline', ...commonOptions, where: { type: { equals: "competition" } } }),
   ])
 
-
-  const photo = globals.photo as Media;
-
+  const photo = globals.photo as Media
   if (!photo || !photo.filename) {
-    throw new Error("La photo ou son nom de fichier est introuvable");
+    throw new Error("La photo ou son nom de fichier est introuvable")
   }
 
-  const filePath = path.join(process.cwd(), 'media', photo.filename);
-  const file = Bun.file(filePath);
-  const avatar = await file.bytes();
-
-  const mailObj = { "icon": "envelope", name: globals.mail, link: `mailto:${globals.mail}` }
-  const phoneObj = { "icon": "phone", name: globals.phone, link: `tel:${globals.phone}` }
-  const addessObj = { "icon": "house", name: globals.address, link: `https://maps.apple.com/?q=:${globals.address}` }
-
-  const main = `
-#import "template.typ": entry_item,header,section_title
-#set page(
-  height: ${100}cm,
-    width: 21.0cm,
-  margin: (x: 0cm, top: 0cm, bottom: 0cm),
-  fill: white,
-)
-
-#header((url:"/avatar.png",dx:0%,dy:0%,scale:1.1),"${globals.name}","${globals.name}", ${toTypstObject([mailObj, phoneObj, addessObj, ...globals.socials])})
-
-#block(
-width: 100%,
-inset: (x: 1.5cm, top: 0.5cm),
-[
-${timelineBlock(m.work(), work.docs)}
-${projectBlock(m.projects(), projects.docs)}
-${timelineBlock(m.studies(), education.docs)}
-${timelineBlock(m.contests(), competition.docs)}
-${timelineBlock(m.volunteering(), volunteering.docs)}
-]
-)
-`
-
+  const filePath = path.join(process.cwd(), 'media', photo.filename)
+  const file = Bun.file(filePath)
+  const avatar = await file.bytes()
 
   return (
     <main className="min-h-dvh w-dvw flex items-center flex-col text-slate-900 px-4 py-12">
-      <div className="flex flex-col items-center gap-2 text-center pt-8 pb-16 print:hidden">
+      <div className="flex flex-col items-center gap-2 text-center pt-8 pb-8 print:hidden">
         <h1 className="text-4xl md:text-5xl font-black text-slate-900 tracking-tight">
           {m.cv()}
         </h1>
         <div className="h-1 w-12 bg-slate-900 rounded-full mt-2"></div>
       </div>
-      <div className="mx-auto grid grid-cols-[repeat(auto-fit,minmax(400px,1fr))] max-w-4xl w-full gap-4">
-        <Typst main={main} avatar={avatar}></Typst>
-      </div>
+
+      <CVBuilder
+        locale={locale}
+        messages={{
+          work: m.work(),
+          projects: m.projects(),
+          studies: m.studies(),
+          contests: m.contests(),
+          volunteering: m.volunteering(),
+        }}
+        globals={globals}
+        data={{
+          projects: projects.docs,
+          work: work.docs,
+          education: education.docs,
+          volunteering: volunteering.docs,
+          competition: competition.docs,
+        }}
+        avatar={avatar}
+      />
     </main>
-  );
+  )
 }

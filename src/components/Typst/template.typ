@@ -13,16 +13,31 @@
 #let text_muted = rgb("#64748b")  // Slate 500 (Texte secondaire/sous-titres)
 #let text_light = rgb("#ffffff")  // Blanc pur
 
-// ============================
-// Header
-// ============================
+#let tag(item) = {
+  box(
+  inset: (x: 6pt, y: 3pt),
+  fill: bg_tint,
+  stroke: 0.5pt + tag_border,
+  radius: 4pt,
+  outset: 0pt,
+  baseline: 20%,
+    grid(
+                columns: 2,
+                gutter: 3pt,
+                align: horizon,
+                // Centre verticalement l'icône et le texte
+                fa-icon(lower(item.icon), solid: true, fill: primary_color, size: 7pt),
+                text(size: 7.5pt, weight: "semibold", fill: title_color)[#item.name],
+    ),
+  )
+}
+
 #let header(avatar, name, header_text, socials) = {
-  set text(font: "Noto Sans")
   block(
     width: 100%,
-    inset: (x: 1cm, y: 1.1cm),
+    inset: 0.5cm,
     fill: title_color,
-    radius: (bottom: 32pt, top: 0pt),
+    // radius: (left: 50%),
     [
       #set text(fill: text_light)
       #grid(
@@ -31,11 +46,10 @@
         align: (center + horizon, left + horizon),
         // Avatar
         block(
-          width: 104pt,
-          height: 104pt,
+          width: 4cm,
+          height: 4cm,
           radius: 50%,
-          stroke: 2pt + accent_light,
-          fill: title_color.lighten(15%),
+          stroke: 0.1cm + title_color.darken(15%),
           clip: true,
           [
             #place(top + left, dx: avatar.dx, dy: avatar.dy, scale(
@@ -50,24 +64,19 @@
           #text(size: 20pt, weight: "bold", tracking: 1pt, fill: white)[
             #upper(name)
           ]
-          #v(4pt)
-          #text(size: 10pt, weight: "medium", fill: accent_light, tracking: 1.5pt)[
-            #upper(header_text)
-          ]
-          #v(8pt)
-          #set text(size: 8.5pt, fill: text_light)
-          #grid(
-            columns: (1fr, 1fr),
-            row-gutter: 5pt,
-            column-gutter: 10pt,
+          // #v(4pt)
+          // #text(size: 10pt, weight: "medium", fill: accent_light, tracking: 1.5pt)[
+          //   #upper(header_text)
+          // ]
+          #v(-8pt)
+
+          #stack(
+            dir: ltr,
+            spacing: 20pt,
             ..socials.map(social => [
               #fa-icon(lower(social.icon), solid: true, fill: accent_light, size: 9pt)
-              #h(5pt)
-              #if social.at("link", default: none) != none [
-                #link(social.link)[#text(fill: text_light)[#social.name]]
-              ] else [
-                #social.name
-              ]
+              #h(3pt)
+              #link(social.link)[#text(size: 8.5pt, fill: text_light)[#social.name]]
             ])
           )
         ],
@@ -76,24 +85,17 @@
   )
 }
 
-// ============================
-// Titre de section
-// ============================
 #let section_title(title) = {
-  set text(font: "Noto Sans")
-  v(14pt)
+  text(size: 11.5pt, weight: "bold", fill: title_color, tracking: 0.8pt)[
+    #upper(title)
+  ]
+  v(-6pt)
   grid(
-    columns: (4pt, 1fr),
-    gutter: 8pt,
-    align: (left + horizon, left + horizon),
-    rect(width: 4pt, height: 14pt, fill: primary_color, radius: 2pt),
-    text(size: 11.5pt, weight: "bold", fill: title_color, tracking: 0.8pt)[
-      #upper(title)
-    ],
+    columns: (40pt, 1fr),
+    gutter: 0pt,
+    line(length: 100%, stroke: 2pt + accent_color), line(length: 100%, stroke: 0.8pt + accent_light),
   )
-  v(2pt)
-  line(length: 100%, stroke: 0.8pt + tag_border)
-  v(6pt)
+  v(-4pt)
 }
 
 
@@ -101,7 +103,6 @@
 // Élément d'entrée (expérience / projet / etc.)
 // ============================
 #let entry_item(title, company, address, dates, description, tags) = {
-  set text(font: "Noto Sans")
   block(
     width: 100%,
     inset: (y: 5pt),
@@ -142,23 +143,8 @@
       #if type(tags) == array and tags.len() > 0 [
         #v(4pt)
         #block[
-          #for tag in tags [
-            #box(
-              inset: (x: 6pt, y: 3pt),
-              fill: bg_tint,
-              stroke: 0.5pt + tag_border,
-              radius: 4pt,
-              outset: 0pt,
-              baseline: 20%,
-              grid(
-                columns: 2,
-                gutter: 3pt,
-                align: horizon,
-                // Centre verticalement l'icône et le texte
-                fa-icon(lower(tag.icon), solid: true, fill: primary_color, size: 7pt),
-                text(size: 7.5pt, weight: "semibold", fill: title_color)[#tag.name],
-              ),
-            )
+          #for item in tags [
+            #tag(item)
             #h(3pt)
           ]
         ]
@@ -167,3 +153,4 @@
   )
   v(6pt)
 }
+

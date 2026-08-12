@@ -1,75 +1,14 @@
 "use client"
 
-import { $typst, loadFonts } from '@myriaddreamin/typst.ts';
-import { GlobalSetting, Media } from '@payload-types';
-import { headers } from 'next/headers';
 import template from "./template.typ"
 import fontAwesomeLib from "./fontawesome/lib.typ"
 import fontAwesomeLibImpl from "./fontawesome/lib-impl.typ"
 import fontAwesomeLibMap from "./fontawesome/lib-gen-map.typ"
 import fontAwesomeLibFunc from "./fontawesome/lib-gen-func.typ"
-
-
-const compilerWasmUrl = new URL(
-    '@myriaddreamin/typst-ts-web-compiler/pkg/typst_ts_web_compiler_bg.wasm',
-    import.meta.url
-).href;
-const rendererWasmUrl = new URL(
-    '@myriaddreamin/typst-ts-renderer/pkg/typst_ts_renderer_bg.wasm',
-    import.meta.url
-).href;
-const awesome1 = new URL(
-    './fonts/Font Awesome 7 Brands-Regular-400.otf',
-    import.meta.url
-).href;
-const awesome2 = new URL(
-    './fonts/Font Awesome 7 Free-Regular-400.otf',
-    import.meta.url
-).href;
-const awesome3 = new URL(
-    './fonts/Font Awesome 7 Free-Solid-900.otf',
-    import.meta.url
-).href;
-const notoSansUrl = new URL(
-    './fonts/NotoSans-VariableFont_wdth,wght.ttf',
-    import.meta.url
-).href;
-
 import { useEffect, useState } from 'react';
-import { projectBlock, timelineBlock, toTypstObject } from './cv';
-import { m } from '@/paraglide/messages';
-let inited = false;
+import { TypstManager } from './cv';
 
-function setTypst() {
-    if (!inited) {
-        $typst.setCompilerInitOptions({
-            beforeBuild: [
-                loadFonts([notoSansUrl, awesome1, awesome2, awesome3])
-            ],
-            getModule: () =>
-                compilerWasmUrl,
-        });
-
-        $typst.setRendererInitOptions({
-            beforeBuild: [
-                loadFonts([notoSansUrl, awesome1, awesome2, awesome3])
-            ],
-            getModule: () => rendererWasmUrl,
-        });
-
-        inited = true;
-    }
-    return $typst;
-};
-
-
-type typstFiles = {
-    [key: string]: string
-}
-
-export default function ({main,avatar}:{main:string, avatar:Uint8Array<ArrayBuffer>}) {
-
-
+export default function ({ main, avatar }: { main: string, avatar: Uint8Array<ArrayBuffer> }) {
     const inputs = {
         "@preview/fontawesome:0.6.2": fontAwesomeLib,
         "lib-impl.typ": fontAwesomeLibImpl,
@@ -79,19 +18,18 @@ export default function ({main,avatar}:{main:string, avatar:Uint8Array<ArrayBuff
         "/main.typ": main
     }
 
+    const typst = new TypstManager();
+
     const binaryInputs = {
         '/avatar.png': avatar
     }
-
-    const typst = setTypst();
-
 
     for (const [path, content] of Object.entries(inputs)) {
         typst.addSource(path, content);
     }
 
     for (const [path, content] of Object.entries(binaryInputs)) {
-        typst.mapShadow(path, content);
+        typst.addBinarySource(path, content);
     }
 
     let [compiling, setCompiling] = useState(true);
@@ -99,7 +37,7 @@ export default function ({main,avatar}:{main:string, avatar:Uint8Array<ArrayBuff
 
     useEffect(() => {
         setCompiling(true)
-        typst.pdf({ inputs: inputs, mainFilePath: '/main.typ' }).then((compiled: any) => {
+        typst.pdf().then((compiled) => {
             if (compiled) {
                 const blob = new Blob([compiled.buffer as ArrayBuffer], { type: 'application/pdf' });
                 if (compiledUrl) {
