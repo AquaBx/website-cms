@@ -19,10 +19,10 @@ export default function () {
     }
     return <div className="rounded-full  bg-white/20 border-white/30 backdrop-blur-xl  flex justify-between items-center fixed top-4 right-4 p-1  border  shadow-sm  transition-all z-50">
         {locales.map((el, i) => {
-            return <>
-                <input className="hidden" type="radio" id={"lang-" + el} key={i} name={el} checked={el == getLocale()} onChange={handleChange} radioGroup="lang" />
+            return <div key={i}>
+                <input className="hidden" type="radio" id={"lang-" + el} name={el} checked={el == getLocale()} onChange={handleChange} radioGroup="lang" />
                 <label htmlFor={"lang-" + el} className="select-none cursor-pointer aspect-square h-8 grid place-items-center">{emoji.get(el === "en" ? "uk" : el)}</label>
-            </>
+            </div>
         })}
 
         <span className="transition-all -z-1 block aspect-square h-8 left-1 top-1 rounded-full bg-sky-500/20 absolute " style={{ transform: `translateX(${locales.indexOf(getLocale()) * 2}rem)` }}></span>

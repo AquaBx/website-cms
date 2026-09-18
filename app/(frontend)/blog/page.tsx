@@ -11,7 +11,7 @@ export default async function () {
     collection: 'posts',
     locale: getLocale(),
     pagination: false,
-    overrideAccess: false,
+    overrideAccess: true,
   })
 
   return (

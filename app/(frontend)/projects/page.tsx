@@ -16,7 +16,7 @@ export default async function Home() {
     collection: 'projects',
     locale: getLocale(),
     pagination: false,
-    overrideAccess: false,
+    overrideAccess: true,
   })
 
   return (

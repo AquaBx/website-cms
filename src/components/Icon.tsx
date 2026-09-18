@@ -33,12 +33,12 @@ export default function Icon(props: IconProps) {
 			height={size}
 			{...rest}
 		>
-			{icon.path?.map((a:any) => <path {...reactifyProps(a)}></path>)}
-			{icon.rect?.map((a:any) => <rect {...reactifyProps(a)}></rect>)}
-			{icon.circle?.map((a:any) => <circle {...reactifyProps(a)}></circle>)}
-			{icon.polyline?.map((a:any) => <polyline {...reactifyProps(a)}></polyline>)}
-			{icon.polygon?.map((a:any) => <polygon {...reactifyProps(a)}></polygon>)}
-			{icon.line?.map((a:any) => <line {...reactifyProps(a)}></line>)}
+			{icon.path?.map((a:any,i:number) => <path key={i} {...reactifyProps(a)}></path>)}
+			{icon.rect?.map((a:any,i:number) => <rect key={i} {...reactifyProps(a)}></rect>)}
+			{icon.circle?.map((a:any,i:number) => <circle key={i} {...reactifyProps(a)}></circle>)}
+			{icon.polyline?.map((a:any,i:number) => <polyline key={i} {...reactifyProps(a)}></polyline>)}
+			{icon.polygon?.map((a:any,i:number) => <polygon key={i} {...reactifyProps(a)}></polygon>)}
+			{icon.line?.map((a:any,i:number) => <line key={i} {...reactifyProps(a)}></line>)}
 		</svg>
 	)
 }

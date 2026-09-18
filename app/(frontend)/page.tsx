@@ -18,7 +18,7 @@ export default async function Home() {
   const payload = await getPayload({ config })
   const globals = await payload.findGlobal({
     slug: 'global-settings',
-    overrideAccess: false,
+    overrideAccess: true,
   })
 
   return (

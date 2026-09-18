@@ -36,7 +36,7 @@ export default async function Home() {
     collection: 'timeline',
     locale: getLocale(),
     pagination: false,
-    overrideAccess: false,
+    overrideAccess: true,
   })
 
   return (
