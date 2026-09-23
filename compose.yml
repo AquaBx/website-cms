@@ -1,13 +1,27 @@
 services:
-  web:
-    build: .
-    # ports:
-    #   - "3000:3000"
+  cms:
+    build:
+      target: cms
+      context: .
+    ports:
+      - "3001:3000"
     environment:
       - WEBSITE_SECRET=${WEBSITE_SECRET}
       - DATABASE_URL=${DATABASE_URL}
-
+    depends_on:
+        - mongodb
+  website:
+    build: 
+      target: website
+      context: .
+    ports:
+      - "3000:3000"
+    environment:
+      - WEBSITE_SECRET=${WEBSITE_SECRET}
+      - DATABASE_URL=${DATABASE_URL}
+    depends_on:
+        - mongodb
   mongodb:
     ports:
       - "27017:27017"
-    image: mongo
+    image: mongo:8.0.4

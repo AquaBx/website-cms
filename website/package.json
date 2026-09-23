@@ -1,0 +1,42 @@
+{
+	"name": "website",
+	"private": true,
+	"version": "0.0.1",
+	"type": "module",
+	"scripts": {
+		"dev": "vite dev",
+		"build": "vite build",
+		"preview": "vite preview",
+		"prepare": "svelte-kit sync || echo ''",
+		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"
+	},
+	"devDependencies": {
+		"@inlang/paraglide-js": "^2.25.4",
+		"@sveltejs/adapter-node": "^5.5.7",
+		"@sveltejs/kit": "^2.70.3",
+		"@sveltejs/vite-plugin-svelte": "^7.3.1",
+		"@tailwindcss/forms": "^0.5.11",
+		"@tailwindcss/typography": "^0.5.20",
+		"@tailwindcss/vite": "^4.3.3",
+		"svelte": "^5.57.1",
+		"svelte-check": "^4.7.6",
+		"tailwindcss": "^4.3.3",
+		"typescript": "^6.0.3",
+		"vite": "^8.3.0",
+		"@steeze-ui/heroicons": "^2.4.2",
+		"@steeze-ui/lucide-icons": "^1.4.1",
+		"@steeze-ui/react-icon": "^1.0.5",
+		"@steeze-ui/simple-icons": "^1.10.1",
+		"@steeze-ui/solid-icon": "^1.1.0",
+		"@steeze-ui/svelte-icon": "^1.6.2",
+		"@types/bun": "^1.4.2",
+		"node-emoji": "^2.2.0",
+		"@myriaddreamin/typst-ts-renderer": "^0.7.0",
+		"@myriaddreamin/typst-ts-web-compiler": "^0.7.0",
+		"@myriaddreamin/typst.ts": "^0.7.0"
+	},
+	"dependencies": {
+		"payload": "^3.90.2"
+	}
+}

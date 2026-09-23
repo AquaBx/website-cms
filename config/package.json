@@ -1,0 +1,14 @@
+{
+  "name": "config",
+  "private": true,
+  "devDependencies": {
+    "@types/bun": "latest",
+    "@payloadcms/db-mongodb": "^3.90.2",
+    "@payloadcms/richtext-lexical": "^3.90.2",
+    "@payloadcms/translations": "^3.90.2",
+    "payload": "^3.90.2"
+  },
+  "peerDependencies": {
+    "typescript": "^7"
+  }
+}
