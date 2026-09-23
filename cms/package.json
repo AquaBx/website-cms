@@ -12,7 +12,10 @@
     "@types/node": "^26.6.2",
     "@types/bun": "^1.4.2",
     "typescript": "^5.9.3",
-    "@payloadcms/next": "^3.90.2"
+    "@payloadcms/next": "^3.90.2",
+    "@payloadcms/db-mongodb": "^3.90.2",
+    "@payloadcms/richtext-lexical": "^3.90.2",
+    "@payloadcms/translations": "^3.90.2"
   },
   "dependencies": {
     "payload": "^3.90.2",
