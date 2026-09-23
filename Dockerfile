@@ -4,9 +4,6 @@ WORKDIR /build
 
 COPY . .
 
-ENV WEBSITE_SECRET=factice
-ENV DATABASE_URL=factice
-
 WORKDIR /build/config
 RUN bun install --frozen-lockfile
 
