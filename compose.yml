@@ -1,7 +1,8 @@
 services:
   cms:
     build:
-      dockerfile: ./Dockerfile.cms
+      dockerfile: ./Dockerfile
+      target: cms
     ports:
       - "3001:3000"
     environment:
@@ -11,7 +12,8 @@ services:
         - mongodb
   website:
     build: 
-      dockerfile: ./Dockerfile.website
+      dockerfile: ./Dockerfile
+      target: website
     ports:
       - "3000:3000"
     environment:

@@ -34,10 +34,7 @@
 		"node-emoji": "^2.2.0",
 		"@myriaddreamin/typst-ts-renderer": "^0.7.0",
 		"@myriaddreamin/typst-ts-web-compiler": "^0.7.0",
-		"@myriaddreamin/typst.ts": "^0.7.0",
-		"@payloadcms/db-mongodb": "^3.90.2",
-		"@payloadcms/richtext-lexical": "^3.90.2",
-		"@payloadcms/translations": "^3.90.2"
+		"@myriaddreamin/typst.ts": "^0.7.0"
 	},
 	"dependencies": {
 		"payload": "^3.90.2"

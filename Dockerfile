@@ -4,6 +4,9 @@ WORKDIR /build
 
 COPY . .
 
+WORKDIR /build/config
+RUN bun install --frozen-lockfile
+
 WORKDIR /build/cms
 RUN bun install --frozen-lockfile
 
