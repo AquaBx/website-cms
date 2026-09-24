@@ -6,6 +6,7 @@
       "dom.iterable",
       "esnext"
     ],
+    "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
     "noEmit": true,
@@ -32,7 +33,6 @@
         "name": "next"
       }
     ],
-    "allowJs": true
   },
   "include": [
     "next-env.d.ts",
@@ -40,6 +40,7 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts",
+    "**/*.mts",
     "../config/payload-types.ts",
     "../config/payload.config.ts"
   ],

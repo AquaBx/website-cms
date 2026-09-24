@@ -9,12 +9,6 @@ RUN bun install --frozen-lockfile
 
 WORKDIR /build/cms
 RUN bun install --frozen-lockfile
-
-WORKDIR /build/cms/node_modules/adapter-bun
-RUN bun install
-RUN bun run build
-
-WORKDIR /build/cms
 RUN bun run build
 
 WORKDIR /build/website
@@ -26,12 +20,11 @@ FROM oven/bun:alpine AS cms
 WORKDIR /app
 
 COPY ./cms/package.json .
-COPY --from=build /build/cms/bun-dist ./dist
 COPY --from=build /build/cms/.next ./.next
 
 RUN bun i -p
 
-CMD ["bun","dist/server.js"]
+CMD ["next","start"]
 
 FROM oven/bun:alpine AS website
 

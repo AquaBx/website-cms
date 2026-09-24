@@ -1,4 +1,5 @@
-/.env
-node_modules
-.svelte-kit
-.next
+**/node_modules
+**/.next
+**/.svelte-kit
+**/dist
+**/.env
