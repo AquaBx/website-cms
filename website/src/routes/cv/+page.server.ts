@@ -1,6 +1,6 @@
 import { getMediaUrl } from '$lib';
 import { getLocale } from '$lib/paraglide/runtime'
-import type { Media } from '@payload-types';
+import type { Media } from "aquabx-config/payload-types";
 
 export async function load({ locals, fetch }) {
 	const commonOptions = {

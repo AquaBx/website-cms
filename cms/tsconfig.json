@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "target": "ES2017",
+    "allowImportingTsExtensions": true,
     "lib": [
       "dom",
       "dom.iterable",
@@ -18,12 +19,6 @@
     "jsx": "react-jsx",
     "incremental": true,
     "paths": {
-      "@payload-config": [
-        "../config/payload.config.ts"
-      ],
-      "@payload-types": [
-        "../config/payload-types.ts"
-      ],
       "@/*": [
         "../config/src/*"
       ]
@@ -40,9 +35,7 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts",
-    "**/*.mts",
-    "../config/payload-types.ts",
-    "../config/payload.config.ts"
+    "**/*.mts"
   ],
   "exclude": [
     "node_modules"

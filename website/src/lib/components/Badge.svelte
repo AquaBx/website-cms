@@ -1,5 +1,5 @@
 <script lang="ts">
-	// import { Tag } from "@payload-types";
+	import type { Tag } from "aquabx-config/payload-types";
 	let { tag }: { tag: Tag } = $props();
 </script>
 

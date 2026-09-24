@@ -1,38 +1,29 @@
-FROM oven/bun:alpine AS build
+FROM node:alpine AS build
 
 WORKDIR /build
 
 COPY . .
 
-WORKDIR /build/config
-RUN bun install --frozen-lockfile
+RUN npm install -g yarn
 
-WORKDIR /build/cms
-RUN bun install --frozen-lockfile
-RUN bun run build
-
-WORKDIR /build/website
-RUN bun install --frozen-lockfile
-RUN bun run build
+RUN yarn install --frozen-lockfile
+RUN yarn workspaces run build
 
 FROM oven/bun:alpine AS cms
 
 WORKDIR /app
 
-COPY ./cms/package.json .
-COPY --from=build /build/cms/.next ./.next
+COPY --from=build /build/cms/.next/standalone ./
+COPY --from=build /build/cms/.next/static ./cms/.next/static
 
-RUN bun i -p
-
-CMD ["next","start"]
+CMD ["bun","cms/server.js"]
 
 FROM oven/bun:alpine AS website
 
 WORKDIR /app
 
-COPY ./website/package.json .
 COPY --from=build /build/website/build ./dist
 
-RUN bun i -p
+RUN bun i payload
 
 CMD ["bun","dist/index.js"]

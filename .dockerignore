@@ -3,3 +3,4 @@
 **/.svelte-kit
 **/dist
 **/.env
+**/out

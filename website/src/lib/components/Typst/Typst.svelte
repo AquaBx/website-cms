@@ -5,7 +5,6 @@
 	import fontAwesomeLibMap from "./fontawesome/lib-gen-map.typ?raw";
 	import fontAwesomeLibFunc from "./fontawesome/lib-gen-func.typ?raw";
 	import { TypstManager } from "./cv";
-	import { browser } from "$app/environment";
 	import { onMount } from "svelte";
 
 	const {
@@ -18,17 +17,14 @@
 	let typst: TypstManager | undefined = $state();
 
 	onMount(() => {
+		typst = new TypstManager();
 		const inputs = {
 			"@preview/fontawesome:0.6.2": fontAwesomeLib,
 			"lib-impl.typ": fontAwesomeLibImpl,
 			"lib-gen-map.typ": fontAwesomeLibMap,
 			"lib-gen-func.typ": fontAwesomeLibFunc,
 			"/template.typ": template,
-			"/main.typ": main,
 		};
-
-		typst = new TypstManager();
-
 		const binaryInputs: { [key: string]: Uint8Array } = {};
 
 		binaryInputs[`/${avatar_name}`] = avatar;
@@ -42,11 +38,19 @@
 		}
 	});
 
+	let pdfPromise = $state<Promise<Uint8Array<ArrayBufferLike> | undefined>>();
+
+	$effect(() => {
+		if (typst) {
+			typst.addSource("/main.typ", main);
+			pdfPromise = typst.pdf();
+		}
+	});
 </script>
 
 <div class="flex-1 flex flex-col relative h-full w-full min-h-150">
-	{#if typst}
-		{#await typst.pdf()}
+	{#if pdfPromise}
+		{#await pdfPromise}
 			<div
 				class="absolute inset-0 flex items-center justify-center bg-slate-50 bg-opacity-50 z-10 rounded-xl transition-all duration-300"
 			>

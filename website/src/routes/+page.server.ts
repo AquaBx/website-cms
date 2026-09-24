@@ -4,6 +4,5 @@ export async function load({ locals, fetch }) {
 		slug: "global-settings",
 		overrideAccess: true,
 	});
-	console.log(globals)
 	return globals
 }

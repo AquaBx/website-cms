@@ -1,8 +1,9 @@
 <script lang="ts">
-	// import { Media, Post, Project, Tag, Timeline } from "@payload-types";
+	import type { Timeline } from "aquabx-config/payload-types";
 	import { Calendar, MapPin } from "@steeze-ui/lucide-icons";
 	import FormattedDate from "$lib/components/FormattedDate.svelte";
 	import { Icon } from "@steeze-ui/svelte-icon";
+	import { m } from "$lib/paraglide/messages";
 
 	let { element }: { element: Timeline } = $props();
 </script>
@@ -31,11 +32,11 @@
 				class="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-slate-400 bg-slate-50 px-2 py-1 rounded-md"
 			>
 				<Icon src={Calendar} class="size-3" />
-				<FormattedDate date="(element.startDate)"></FormattedDate> —
+				<FormattedDate date={element.startDate}></FormattedDate> —
 				{#if element.endDate}
-					<FormattedDate date="(element.endDate)"></FormattedDate> —
+					<FormattedDate date={element.endDate}></FormattedDate> —
 				{:else}
-					m.today()
+					{m.today()}
 				{/if}
 			</div>
 		</div>

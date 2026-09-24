@@ -1,8 +1,9 @@
-import type { Project, Tag, Timeline } from "@payload-types"
+import type { Project, Tag, Timeline } from "aquabx-config/payload-types";
 import { $typst, createTypstCompiler, createTypstRenderer, loadFonts } from '@myriaddreamin/typst.ts';
 import { TypstSnippet } from "@myriaddreamin/typst.ts/dist/esm/contrib/snippet.mjs";
 // import { createGlobalRenderer } from "@myriaddreamin/typst.ts/contrib/global-renderer";
 // import { createGlobalCompiler } from "@myriaddreamin/typst.ts/contrib/global-compiler";
+import { m } from "$lib/paraglide/messages";
 
 import compilerWasmUrl from '@myriaddreamin/typst-ts-web-compiler/pkg/typst_ts_web_compiler_bg.wasm?url'
 
@@ -33,6 +34,7 @@ export function toTypstObject(object: any): string {
     return `${object}`
   }
   else if (Array.isArray(object)) {
+    if (object.length === 0) return "()"
     return `( ${(object as Array<any>).map(toTypstObject).join(",")}, )`
   }
   else {
@@ -89,14 +91,14 @@ ${this.header}
   columns: (1fr, 1fr),
   gutter: 20pt,
 
-[  #section_title("Languages")
+[  #section_title("${m.languages()}")
   #stack(
     dir: ttb,
     spacing: 5pt,
     ${this.languages}
   )
 ],
-[  #section_title("Certifications")
+[  #section_title("${m.certifications()}")
   #stack(
     dir: ttb,
     spacing: 5pt,
@@ -105,7 +107,7 @@ ${this.header}
 )
 
   #v(6pt)
-  #section_title("Skills")
+  #section_title("${m.skills()}")
   #stack(
     dir: ttb,
     spacing: 5pt,
@@ -159,9 +161,9 @@ ${this.header}
         title: el.title || "",
         company: el.company || "",
         location: el.location || "",
-        date: el.startDate + "-" + el.endDate || "",
+        date: new Date(el.startDate).toLocaleDateString("fr") + " - " + (el.endDate ? new Date(el.endDate).toLocaleDateString("fr") : m.today()) || "",
         description: el.description as any as string || "",
-        tags: "",
+        tags: "()",
       }
     }
     this.addBlock(title, items.map(pipe))
@@ -179,8 +181,8 @@ ${this.header}
     }
     this.addBlock(title, items.map(pipe))
   }
-  setHeader(name: string, avatar_name: string, socials: { icon: string; name: string; link: string; }[]) {
-    this.header = `#header((url:"/${avatar_name}",dx:0%,dy:0%,scale:1.1),"${name}","${name}", ${toTypstObject(socials)})`
+  setHeader(name: string, avatar_name: string, contactInfos: { icon: string; name: string; link: string; }[], socials: { icon: string; name: string; link: string; }[]) {
+    this.header = `#header((url:"/${avatar_name}",dx:0%,dy:0%,scale:1.1),"${name}","${name}",${toTypstObject(contactInfos)}, ${toTypstObject(socials)})`
   }
 
 }

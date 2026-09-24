@@ -11,8 +11,14 @@
 		getLabel: (item: any) => string;
 	} = $props();
 
-	const toggleItem = (id: string, list: string[]) => {
-		list = list.includes(id) ? list.filter((i) => i !== id) : [...list, id];
+	const toggleItem = (id: string) => {
+		const i = selectedList.indexOf(id);
+		if (i !== -1) {
+			delete selectedList[i];
+		} else {
+			selectedList.push(id);
+		}
+		selectedList = [...selectedList];
 	};
 </script>
 
@@ -33,7 +39,7 @@
 						type="checkbox"
 						class="hidden"
 						checked={isChecked}
-						onchange={() => toggleItem(item.id, selectedList)}
+						onchange={() => toggleItem(item.id)}
 					/>
 					{getLabel(item)}
 				</label>

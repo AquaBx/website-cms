@@ -2,10 +2,9 @@
 	import { getMediaUrl } from "$lib";
 	import { iconMap } from "$lib/icons";
 	import { m } from "$lib/paraglide/messages";
-	import type { Media } from "@payload-types";
+	import type { Media } from "aquabx-config/payload-types";
 	import { CircleAlert } from "@steeze-ui/lucide-icons";
 	import { Icon } from "@steeze-ui/svelte-icon";
-    // import { Media } from "@payload-types";
 
 	const age = Math.floor(
 		(Date.now() - new Date(2003, 5, 19).getTime()) / 31556952000,

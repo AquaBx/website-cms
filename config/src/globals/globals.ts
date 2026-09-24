@@ -33,9 +33,16 @@ export const Globals: GlobalConfig = {
             name: 'socials',
             type: 'array',
             required: true,
+
             fields: [{
                 name: 'name',
                 type: 'text',
+                required: true,
+            },
+            {
+                name: 'cvShown',
+                type: 'checkbox',
+                defaultValue: false,
                 required: true,
             }, {
                 name: 'icon',

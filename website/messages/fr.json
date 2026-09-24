@@ -24,7 +24,6 @@
 			}
 		}
 	],
-	"title": "AquaBx",
 	"work": "Expériences professionelles",
 	"volunteering": "Bénévolat",
 	"studies": "Études",
@@ -36,5 +35,9 @@
 	"contributions": "Contributions",
 	"completed_only": "Complétés uniquement",
 	"filter_types": "Types & Statut",
-	"filters": "Filtres"
+	"filters": "Filtres",
+	"languages": "Langues",
+	"certifications": "Certifications",
+	"summary": "Résumé",
+	"skills": "Compétences"
 }

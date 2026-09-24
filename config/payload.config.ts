@@ -29,7 +29,7 @@ export default buildConfig({
   globals: [Globals],
   collections: [Users, Media, Posts, Tags, Timeline, Projects],
   editor: lexicalEditor(),
-  secret: process.env.WEBSITE_SECRET || "",
+  secret: process.env.WEBSITE_SECRET || "3cb0325f51edffb60352c770",
   typescript: {
     outputFile: path.resolve(dirname, 'payload-types.ts'),
   },
@@ -39,7 +39,7 @@ export default buildConfig({
     fallback: true
   },
   db: mongooseAdapter({
-    url: process.env.DATABASE_URL || "",
+    url: process.env.DATABASE_URL || "mongodb://127.0.0.1/website",
   }),
   plugins: [],
 })

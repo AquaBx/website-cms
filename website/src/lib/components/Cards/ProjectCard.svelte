@@ -1,5 +1,5 @@
 <script lang="ts">
-	// import { Project, Tag } from "@payload-types";
+	import type { Project, Tag } from "aquabx-config/payload-types";
 	import Badge from "$lib/components/Badge.svelte";
 
 	let { content, title, createdAt, id, url, tags, ...el }: Project = $props();

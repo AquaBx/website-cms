@@ -32,7 +32,7 @@
   )
 }
 
-#let header(avatar, name, header_text, socials) = {
+#let header(avatar, name, header_text, stack1, stack2) = {
   block(
     width: 100%,
     inset: 0.5cm,
@@ -73,7 +73,17 @@
           #stack(
             dir: ltr,
             spacing: 20pt,
-            ..socials.map(social => [
+            ..stack1.map(social => [
+              #fa-icon(lower(social.icon), solid: true, fill: accent_light, size: 9pt)
+              #h(3pt)
+              #link(social.link)[#text(size: 8.5pt, fill: text_light)[#social.name]]
+            ])
+          )
+          
+          #stack(
+            dir: ltr,
+            spacing: 20pt,
+            ..stack2.map(social => [
               #fa-icon(lower(social.icon), solid: true, fill: accent_light, size: 9pt)
               #h(3pt)
               #link(social.link)[#text(size: 8.5pt, fill: text_light)[#social.name]]
@@ -114,7 +124,7 @@
         [
           #text(weight: "bold", size: 10pt, fill: title_color, tracking: 0.2pt)[#upper(title)]
           #if company != "" [
-            #text(size: 10pt, fill: text_muted)[ "/" ]
+            #text(size: 10pt, fill: text_muted)[ \/ ]
             #text(weight: "bold", size: 10pt, fill: primary_color)[#upper(company)]
           ]
         ],

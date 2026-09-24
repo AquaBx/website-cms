@@ -1,5 +1,5 @@
 <script lang="ts">
-	// import { Media, Post, Tag } from "@payload-types";
+	import type { Media, Post, Tag } from "aquabx-config/payload-types";
 	import Badge from "$lib/components/Badge.svelte";
 
 	let { content, tags, title, createdAt, summary, id, ...el }: Post =

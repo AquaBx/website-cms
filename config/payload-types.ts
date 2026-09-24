@@ -142,6 +142,7 @@ export interface User {
   resetPasswordExpiration?: string | null;
   salt?: string | null;
   hash?: string | null;
+  resetPasswordRequestedAt?: string | null;
   loginAttempts?: number | null;
   lockUntil?: string | null;
   sessions?:
@@ -363,6 +364,7 @@ export interface UsersSelect<T extends boolean = true> {
   resetPasswordExpiration?: T;
   salt?: T;
   hash?: T;
+  resetPasswordRequestedAt?: T;
   loginAttempts?: T;
   lockUntil?: T;
   sessions?:
@@ -500,6 +502,7 @@ export interface GlobalSetting {
   photo: string | Media;
   socials: {
     name: string;
+    cvShown: boolean;
     icon: string;
     link: string;
     id?: string | null;
@@ -521,6 +524,7 @@ export interface GlobalSettingsSelect<T extends boolean = true> {
     | T
     | {
         name?: T;
+        cvShown?: T;
         icon?: T;
         link?: T;
         id?: T;

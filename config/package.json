@@ -1,14 +1,19 @@
 {
-  "name": "config",
+  "name": "aquabx-config",
   "private": true,
-  "devDependencies": {
-    "@types/bun": "latest",
-    "@payloadcms/db-mongodb": "^3.90.2",
-    "@payloadcms/richtext-lexical": "^3.90.2",
-    "@payloadcms/translations": "^3.90.2",
-    "payload": "^3.90.2"
-  },
+  "type": "module",
+  "version": "0.0.1",
+  "dependencies": {},
   "peerDependencies": {
+    "@types/bun": "*",
+    "@payloadcms/db-mongodb": "*",
+    "@payloadcms/richtext-lexical": "*",
+    "@payloadcms/translations": "*",
+    "@payloadcms/graphql": "*",
+    "payload": "*",
     "typescript": "^7"
+  },
+  "scripts": {
+    "build": "payload generate:types"
   }
 }

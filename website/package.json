@@ -1,5 +1,5 @@
 {
-	"name": "website",
+	"name": "aquabx-website",
 	"private": true,
 	"version": "0.0.1",
 	"type": "module",
@@ -12,6 +12,7 @@
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"
 	},
 	"devDependencies": {
+		"aquabx-config": "*",
 		"@inlang/paraglide-js": "^2.25.4",
 		"@sveltejs/adapter-node": "^5.5.7",
 		"@sveltejs/kit": "^2.70.3",
@@ -30,16 +31,16 @@
 		"@steeze-ui/simple-icons": "^1.10.1",
 		"@steeze-ui/solid-icon": "^1.1.0",
 		"@steeze-ui/svelte-icon": "^1.6.2",
-		"@types/bun": "^1.4.2",
+		"@types/bun": "*",
 		"node-emoji": "^2.2.0",
 		"@myriaddreamin/typst-ts-renderer": "^0.7.0",
 		"@myriaddreamin/typst-ts-web-compiler": "^0.7.0",
 		"@myriaddreamin/typst.ts": "^0.7.0",
-		"@payloadcms/db-mongodb": "^3.90.2",
-		"@payloadcms/richtext-lexical": "^3.90.2",
-		"@payloadcms/translations": "^3.90.2"
+		"@payloadcms/db-mongodb": "*",
+		"@payloadcms/richtext-lexical": "*",
+		"@payloadcms/translations": "*"
 	},
 	"dependencies": {
-		"payload": "^3.90.2"
+		"payload": "*"
 	}
 }

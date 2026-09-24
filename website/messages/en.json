@@ -24,7 +24,6 @@
 			}
 		}
 	],
-	"title": "AquaBx",
 	"work": "Professional experience",
 	"contests": "Programming contests",
 	"studies": "Studies",
@@ -36,5 +35,9 @@
 	"contributions": "Contributions",
 	"completed_only": "Completed only",
 	"filter_types": "Types & Status",
-	"filters": "Filters"
+	"filters": "Filters",
+	"languages": "Languages",
+	"certifications": "Certifications",
+	"summary": "Summary",
+	"skills": "Skills"
 }

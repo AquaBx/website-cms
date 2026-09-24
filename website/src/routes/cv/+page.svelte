@@ -3,7 +3,7 @@
 	import CVBuilder from "$lib/components/Typst/CVBuilder.svelte";
 	import { m } from "$lib/paraglide/messages";
 	import { getLocale } from "$lib/paraglide/runtime";
-	import type { Media } from "@payload-types";
+	import type { Media } from "aquabx-config/payload-types";
 	import path from "path";
 
 	const { data } = $props();

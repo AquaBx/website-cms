@@ -3,7 +3,7 @@ import { getTextDirection } from '$lib/paraglide/runtime';
 import { paraglideMiddleware } from '$lib/paraglide/server';
 
 import { getPayload, type Payload } from 'payload'
-import config from '@payload-config'
+import config from 'aquabx-config/payload.config'
 import { sequence } from '@sveltejs/kit/hooks';
 
 let payload: Payload | null = null
