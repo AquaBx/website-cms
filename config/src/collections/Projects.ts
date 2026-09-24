@@ -51,7 +51,7 @@ export const Projects: CollectionConfig = {
     },
     {
       name: 'content',
-      type: 'textarea',
+      type: 'richText',
       localized: true,
     },
   ],

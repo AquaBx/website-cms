@@ -45,6 +45,25 @@ export function toTypstObject(object: any): string {
   }
 }
 
+import type { SerializedEditorState, SerializedLexicalNode } from "@payloadcms/richtext-lexical/lexical";
+
+function richElToTypstObject(object: SerializedLexicalNode) {
+  console.log(object)
+  switch (object.type) {
+    case "paragraph": return (object as any).children.map(richElToTypstObject).join("");
+    case "text": return `#text("${(object as any).text}")`;
+    case "list": return (object as any).children.map(richElToTypstObject).join("\n");
+    case "listitem": return `- ${(object as any).children.map(richElToTypstObject).join("")}`;
+    default: throw "Not Supported"
+  }
+}
+
+
+export function richToTypst(object: SerializedEditorState | null | undefined): string {
+  if (!object) return ""
+  return object.root.children.map(richElToTypstObject).join("\n")
+}
+
 export class CV {
 
   contents: string[]
@@ -149,7 +168,7 @@ ${this.header}
     if (items.length === 0) return ""
 
     const piped = items.map((el) => {
-      return `#entry_item("${el.title}","${el.company}","${el.location}","${el.date}","${el.description}",${el.tags})`
+      return `#entry_item("${el.title}","${el.company}","${el.location}","${el.date}",[${el.description}],${el.tags})`
     })
 
     this.contents.push(`\n#section_title("${title}")\n${(piped).join("\n")}`)
@@ -162,7 +181,7 @@ ${this.header}
         company: el.company || "",
         location: el.location || "",
         date: new Date(el.startDate).toLocaleDateString("fr") + " - " + (el.endDate ? new Date(el.endDate).toLocaleDateString("fr") : m.today()) || "",
-        description: el.description as any as string || "",
+        description: richToTypst(el.description),
         tags: "()",
       }
     }
@@ -175,7 +194,7 @@ ${this.header}
         company: "",
         location: "",
         date: "",
-        description: el.content || "",
+        description: richToTypst(el.content),
         tags: toTypstObject(el.tags || []),
       }
     }

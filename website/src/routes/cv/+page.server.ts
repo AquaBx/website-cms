@@ -12,7 +12,15 @@ export async function load({ locals, fetch }) {
 
 	const data = await Promise.all([
 		payload.findGlobal({ slug: "global-settings", ...commonOptions }),
-		payload.find({ collection: "projects", ...commonOptions }),
+		payload.find({
+			collection: "projects",
+			where: {
+				shown: {
+					equals: true,
+				},
+			},
+			...commonOptions
+		}),
 		payload.find({
 			collection: "timeline",
 			...commonOptions,

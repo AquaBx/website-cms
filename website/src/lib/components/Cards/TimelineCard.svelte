@@ -4,6 +4,7 @@
 	import FormattedDate from "$lib/components/FormattedDate.svelte";
 	import { Icon } from "@steeze-ui/svelte-icon";
 	import { m } from "$lib/paraglide/messages";
+	import { convertLexicalToHTML } from "@payloadcms/richtext-lexical/html";
 
 	let { element }: { element: Timeline } = $props();
 </script>
@@ -34,7 +35,7 @@
 				<Icon src={Calendar} class="size-3" />
 				<FormattedDate date={element.startDate}></FormattedDate> —
 				{#if element.endDate}
-					<FormattedDate date={element.endDate}></FormattedDate> —
+					<FormattedDate date={element.endDate}></FormattedDate>
 				{:else}
 					{m.today()}
 				{/if}
@@ -45,6 +46,8 @@
 	<div
 		class="text-slate-600 leading-relaxed whitespace-pre-wrap text-sm md:text-base"
 	>
-		{@html element.description}
+		{#if element.description}
+			{@html convertLexicalToHTML({data:element.description})}
+		{/if}
 	</div>
 </div>

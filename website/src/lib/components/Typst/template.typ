@@ -138,16 +138,7 @@
       #v(5pt)
       // Description en liste à puces (tirets)
       #if description != "" and description != none [
-        #for line in description.split("\n") [
-          #if line.trim() != "" [
-            #grid(
-              columns: (8pt, 1fr),
-              gutter: 5pt,
-              text(fill: primary_color, weight: "bold")[–], text(size: 9pt, fill: text_color)[#line.trim()],
-            )
-            #v(2pt)
-          ]
-        ]
+        #description
       ]
       // Tags avec icônes
       #if type(tags) == array and tags.len() > 0 [
