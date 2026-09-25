@@ -16,21 +16,21 @@
 
 #let tag(item) = {
   box(
-  inset: (x: 6pt, y: 3pt),
-  fill: bg_tint,
-  stroke: 0.5pt + tag_border,
-  radius: 4pt,
-  outset: 0pt,
-  baseline: 20%,
+    inset: (x: 6pt, y: 3pt),
+    fill: bg_tint,
+    stroke: 0.5pt + tag_border,
+    radius: 4pt,
+    outset: 0pt,
+    baseline: 20%,
     grid(
-                columns: 2,
-                gutter: 3pt,
-                align: horizon,
-                // Centre verticalement l'icône et le texte
-                // fa-icon(lower(item.icon), solid: true, fill: primary_color, size: 7pt),
-                // sicon-raw(slug: "typst"),
-                sicon(slug: item.icon, size: 7pt, icon-color: "default"),
-                text(size: 7.5pt, weight: "semibold", fill: title_color)[#item.name],
+      columns: 2,
+      gutter: 3pt,
+      align: horizon,
+      // Centre verticalement l'icône et le texte
+      // fa-icon(lower(item.icon), solid: true, fill: primary_color, size: 7pt),
+      // sicon-raw(slug: "typst"),
+      sicon(slug: item.icon, size: 7pt, icon-color: "default"),
+      text(size: 7.5pt, weight: "semibold", fill: title_color)[#item.name],
     ),
   )
 }
@@ -80,9 +80,9 @@
               #fa-icon(lower(social.icon), solid: true, fill: accent_light, size: 9pt)
               #h(3pt)
               #link(social.link)[#text(size: 8.5pt, fill: text_light)[#social.name]]
-            ])
+            ]),
           )
-          
+
           #stack(
             dir: ltr,
             spacing: 20pt,
@@ -90,7 +90,7 @@
               #fa-icon(lower(social.icon), solid: true, fill: accent_light, size: 9pt)
               #h(3pt)
               #link(social.link)[#text(size: 8.5pt, fill: text_light)[#social.name]]
-            ])
+            ]),
           )
         ],
       )
@@ -146,12 +146,14 @@
       // Tags avec icônes
       #if type(tags) == array and tags.len() > 0 [
         #v(4pt)
-        #block[
-          #for item in tags [
+        #stack(
+          dir: ttb,
+          spacing: 5pt,
+          for item in tags [
             #tag(item)
             #h(3pt)
-          ]
-        ]
+          ],
+        )
       ]
     ],
   )

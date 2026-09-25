@@ -112,7 +112,7 @@
 		main.addCertification("Permis B", "", 2021);
 		main.addCertification("PSC1", "", 2018);
 		for (const { tags } of filteredProjects) {
-			((tags as Tag[]) || []).forEach((tag: Tag) => {
+			(new Set((tags as Tag[]) || [])).forEach((tag: Tag) => {
 				main.addTag(tag);
 			});
 		}
@@ -120,7 +120,7 @@
 	});
 </script>
 
-<div class="w-full max-w-4xl flex flex-col gap-8">
+<div class="w-full mb-16 max-w-4xl flex flex-col gap-8">
 	<div
 		class="bg-slate-50 p-6 rounded-xl border border-slate-200 flex flex-col gap-6 print:hidden"
 	>
@@ -161,7 +161,7 @@
 	</div>
 
 	<div
-		class="mx-auto grid grid-cols-[repeat(auto-fit,minmax(400px,1fr))] w-full gap-4"
+		class="mx-auto grid md:grid-cols-[repeat(auto-fit,minmax(400px,1fr))] w-full gap-4"
 	>
 		<Typst {avatar_name} {main} {avatar} />
 	</div>

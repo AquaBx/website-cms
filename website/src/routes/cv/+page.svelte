@@ -14,7 +14,7 @@
 </script>
 
 <main
-	class="min-h-dvh w-dvw flex items-center flex-col text-slate-900 px-4 py-12"
+	class="min-h-dvh w-dvw mb-16 flex items-center flex-col text-slate-900 px-4 py-12"
 >
 	<div
 		class="flex flex-col items-center gap-2 text-center pt-8 pb-8 print:hidden"

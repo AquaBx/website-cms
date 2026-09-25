@@ -6,7 +6,7 @@
 </script>
 
 <main
-	class="min-h-dvh w-dvw flex items-center flex-col text-slate-900 px-4 py-12"
+	class="min-h-dvh w-dvw mb-16 flex items-center flex-col text-slate-900 px-4 py-12"
 >
 	<div
 		class="flex flex-col items-center gap-2 text-center pt-8 pb-16 print:hidden"
@@ -19,7 +19,7 @@
 		<div class="h-1 w-12 bg-slate-900 rounded-full mt-2"></div>
 	</div>
 	<div
-		class="mx-auto grid grid-cols-[repeat(auto-fit,minmax(400px,1fr))] max-w-4xl w-full gap-4"
+		class="mx-auto grid md:grid-cols-[repeat(auto-fit,minmax(400px,1fr))] max-w-4xl w-full gap-4"
 	>
 		{#each projects.docs as el}
 			<ProjectCard {...el}></ProjectCard>

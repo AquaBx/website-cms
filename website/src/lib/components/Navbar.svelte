@@ -39,7 +39,7 @@
 				src={link.icon}
 				class={`size-4 transition-transform group-hover:scale-110`}
 			/>
-			<span class="text-sm font-bold tracking-tight">
+			<span class="md:block hidden text-sm font-bold tracking-tight">
 				{link.label()}
 			</span>
 		</a>
