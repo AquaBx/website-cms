@@ -4,6 +4,10 @@
 	import fontAwesomeLibImpl from "./fontawesome/lib-impl.typ?raw";
 	import fontAwesomeLibMap from "./fontawesome/lib-gen-map.typ?raw";
 	import fontAwesomeLibFunc from "./fontawesome/lib-gen-func.typ?raw";
+
+	import siconslib from "./sicons/src/lib.typ?raw";
+	import siconswasm from "./sicons/sicons.wasm?raw";
+
 	import { TypstManager } from "./cv";
 	import { onMount } from "svelte";
 
@@ -24,6 +28,9 @@
 			"lib-gen-map.typ": fontAwesomeLibMap,
 			"lib-gen-func.typ": fontAwesomeLibFunc,
 			"/template.typ": template,
+
+			"@preview/sicons:16.0.0": siconslib,
+			"/sicons.wasm": siconswasm,
 		};
 		const binaryInputs: { [key: string]: Uint8Array } = {};
 

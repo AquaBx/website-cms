@@ -5,7 +5,6 @@
 
 	let { content, title, createdAt, id, url, tags, ...el }: Project = $props();
 </script>
-
 <a
 	href={url || ""}
 	class="flex flex-col p-4 border border-slate-200 shadow-md bg-white rounded-2xl overflow-hidden"
@@ -22,7 +21,9 @@
 		</p>
 	</div>
 
-	{#each tags || [] as tag}
-		<Badge tag={tag as Tag}></Badge>
-	{/each}
+	<div class="flex gap-4">
+		{#each tags as tag}
+			<Badge tag={tag as Tag}></Badge>
+		{/each}
+	</div>
 </a>

@@ -116,7 +116,6 @@
 				main.addTag(tag);
 			});
 		}
-		console.log(main.content(locale))
 		return main.content(locale);
 	});
 </script>

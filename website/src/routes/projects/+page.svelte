@@ -2,8 +2,7 @@
 	import ProjectCard from "$lib/components/Cards/ProjectCard.svelte";
 	import { m } from "$lib/paraglide/messages";
 
-  let {data:projects} = $props()
-
+	let { data: projects } = $props();
 </script>
 
 <main
@@ -23,7 +22,7 @@
 		class="mx-auto grid grid-cols-[repeat(auto-fit,minmax(400px,1fr))] max-w-4xl w-full gap-4"
 	>
 		{#each projects.docs as el}
-      <ProjectCard {el}></ProjectCard>
-    {/each}
+			<ProjectCard {...el}></ProjectCard>
+		{/each}
 	</div>
 </main>

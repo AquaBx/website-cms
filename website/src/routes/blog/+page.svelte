@@ -1,7 +1,7 @@
 <script lang="ts">
 	import BlogCard from "$lib/components/Cards/BlogCard.svelte";
 	import { m } from "$lib/paraglide/messages";
-	
+
 	let { data: posts } = $props();
 </script>
 
@@ -22,7 +22,7 @@
 		class="mx-auto grid grid-cols-[repeat(auto-fit,minmax(400px,1fr))] max-w-4xl w-full gap-4"
 	>
 		{#each posts.docs as post}
-			<BlogCard {post}></BlogCard>
+			<BlogCard {...post}></BlogCard>
 		{/each}
 	</div>
 </main>
