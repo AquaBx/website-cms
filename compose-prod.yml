@@ -30,7 +30,7 @@ services:
       - aquabx-network
 
   database:
-    image: mongo:8.0.4
+    image: mongo:latest
     volumes:
       - database:/data/db
     networks:
