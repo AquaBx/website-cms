@@ -1,0 +1,57 @@
+services:
+  cms:
+    volumes:
+      - medias:/app/media
+    build:
+      dockerfile: ./Dockerfile
+      target: cms
+    environment:
+      - WEBSITE_SECRET=${WEBSITE_SECRET}
+      - DATABASE_URL=mongodb://database/website
+      - GITHUB_TOKEN=${GITHUB_TOKEN}
+    depends_on:
+      - database
+    labels:
+      caddy: cms.${DOMAIN_NAME}
+      caddy.import: tls_wildcard
+      caddy.reverse_proxy: "{{upstreams 3000}}"
+    networks:
+      - default
+      - caddy_net
+
+  website:
+    build:
+      dockerfile: ./Dockerfile
+      target: website
+    environment:
+      - WEBSITE_SECRET=${WEBSITE_SECRET}
+      - DATABASE_URL=mongodb://database/website
+      - PUBLIC_CMS_URL=https://cms.${DOMAIN_NAME}
+    labels:
+      caddy: www.${DOMAIN_NAME}
+      caddy.import: tls_wildcard
+      caddy.reverse_proxy: "{{upstreams 3000}}"
+
+      caddy_redir: ${DOMAIN_NAME}
+      caddy_redir.import: tls_wildcard
+      caddy_redir.redir: https://www.${DOMAIN_NAME}{uri} permanent
+    depends_on:
+      - database
+    networks:
+      - default
+      - caddy_net
+
+  database:
+    image: mongo:8.0.4
+    volumes:
+      - database:/data/db
+    networks:
+      - default
+
+volumes:
+  database:
+  medias:
+
+networks:
+  caddy_net:
+    external: true
