@@ -112,7 +112,7 @@
 		main.addCertification("Permis B", "", 2021);
 		main.addCertification("PSC1", "", 2018);
 		for (const { tags } of filteredProjects) {
-			(new Set((tags as Tag[]) || [])).forEach((tag: Tag) => {
+			((tags as Tag[]) || []).forEach((tag: Tag) => {
 				main.addTag(tag);
 			});
 		}

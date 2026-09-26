@@ -35,6 +35,17 @@
   )
 }
 
+#let tags_line(tags) = {
+  v(6pt)
+
+  block(
+    spacing: 6pt,
+    par(leading: 6pt)[
+      #tags.map(item => box(tag(item))).join(h(6pt))
+    ],
+  )
+}
+
 #let header(avatar, name, header_text, stack1, stack2) = {
   block(
     width: 100%,
@@ -135,25 +146,18 @@
       )
       // Localisation
       #if address != "" [
-        #v(-2pt)
+        #v(-8pt)
         #text(size: 8pt, style: "italic", fill: text_muted, address)
       ]
-      #v(5pt)
       // Description en liste à puces (tirets)
       #if description != "" and description != none [
+        #v(-4pt)
         #description
       ]
       // Tags avec icônes
       #if type(tags) == array and tags.len() > 0 [
-        #v(4pt)
-        #stack(
-          dir: ttb,
-          spacing: 5pt,
-          for item in tags [
-            #tag(item)
-            #h(3pt)
-          ],
-        )
+        #v(-4pt)
+        #tags_line(tags)
       ]
     ],
   )

@@ -67,22 +67,23 @@ export function richToTypst(object: SerializedEditorState | null | undefined): s
 export class CV {
 
   contents: string[]
-  tags: string[]
+  tags: Map<string, Tag>
   header: string
   certifications: string
   description: string
   languages: string
   constructor() {
     this.contents = []
-    this.tags = []
+    this.tags = new Map()
     this.header = ""
     this.certifications = ""
     this.languages = ""
     this.description = ""
   }
+
   content(lang: string) {
     return `
-#import "template.typ": entry_item,header,section_title,tag
+#import "template.typ": entry_item,header,section_title,tag,tags_line
 #set page(
   height: ${100}cm,
   width: 21.0cm,
@@ -127,11 +128,7 @@ ${this.header}
 
   #v(6pt)
   #section_title("${m.skills()}")
-  #stack(
-    dir: ttb,
-    spacing: 5pt,
-    ${this.tags.join(",")}
-  )
+  #tags_line(${toTypstObject(this.tags.values().toArray())})
     
   ]
   
@@ -141,7 +138,7 @@ ${this.header}
   }
 
   addTag(tag: Tag) {
-    this.tags.push(`tag(${toTypstObject(tag)})`)
+    this.tags.set(tag.id, tag)
   }
 
   addCertification(name: string, detail: string, year: number) {
