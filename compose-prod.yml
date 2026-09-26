@@ -11,12 +11,9 @@ services:
       - GITHUB_TOKEN=${GITHUB_TOKEN}
     depends_on:
       - database
-    labels:
-      caddy: cms.${DOMAIN_NAME}
-      caddy.reverse_proxy: "{{upstreams 3000}}"
     networks:
       - default
-      - caddy_net
+      - aquabx-network
 
   website:
     build:
@@ -26,17 +23,11 @@ services:
       - WEBSITE_SECRET=${WEBSITE_SECRET}
       - DATABASE_URL=mongodb://database/website
       - PUBLIC_CMS_URL=https://cms.${DOMAIN_NAME}
-    labels:
-      caddy: www.${DOMAIN_NAME}
-      caddy.reverse_proxy: "{{upstreams 3000}}"
-
-      caddy_redir: ${DOMAIN_NAME}
-      caddy_redir.redir: https://www.${DOMAIN_NAME}{uri} permanent
     depends_on:
       - database
     networks:
       - default
-      - caddy_net
+      - aquabx-network
 
   database:
     image: mongo:8.0.4
@@ -49,6 +40,7 @@ volumes:
   database:
   medias:
 
+
 networks:
-  caddy_net:
+  aquabx-network:
     external: true
