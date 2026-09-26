@@ -13,7 +13,6 @@ services:
       - database
     labels:
       caddy: cms.${DOMAIN_NAME}
-      caddy.import: tls_wildcard
       caddy.reverse_proxy: "{{upstreams 3000}}"
     networks:
       - default
@@ -29,11 +28,9 @@ services:
       - PUBLIC_CMS_URL=https://cms.${DOMAIN_NAME}
     labels:
       caddy: www.${DOMAIN_NAME}
-      caddy.import: tls_wildcard
       caddy.reverse_proxy: "{{upstreams 3000}}"
 
       caddy_redir: ${DOMAIN_NAME}
-      caddy_redir.import: tls_wildcard
       caddy_redir.redir: https://www.${DOMAIN_NAME}{uri} permanent
     depends_on:
       - database
