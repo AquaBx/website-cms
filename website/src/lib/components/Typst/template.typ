@@ -29,7 +29,9 @@
       // Centre verticalement l'icône et le texte
       // fa-icon(lower(item.icon), solid: true, fill: primary_color, size: 7pt),
       // sicon-raw(slug: "typst"),
-      sicon(slug: item.icon, size: 7pt, icon-color: "default"),
+      if (item.icon != "") {
+        sicon(slug: item.icon, size: 7pt, icon-color: "default")
+      },
       text(size: 7.5pt, weight: "semibold", fill: title_color)[#item.name],
     ),
   )
