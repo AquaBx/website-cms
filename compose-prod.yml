@@ -1,7 +1,8 @@
 services:
   cms:
+    container_name: cms
     volumes:
-      - medias:/app/media
+      - medias:/app/cms/media
     build:
       dockerfile: ./Dockerfile
       target: cms
@@ -16,6 +17,7 @@ services:
       - aquabx-network
 
   website:
+    container_name: website
     build:
       dockerfile: ./Dockerfile
       target: website
