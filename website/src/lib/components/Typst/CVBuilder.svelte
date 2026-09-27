@@ -94,11 +94,11 @@
 		);
 		if (filteredWork.length > 0)
 			main.addTimelineBlock(messages.work, filteredWork);
-		if (filteredCompetition.length > 0)
+		if (filteredEducation.length > 0)
 			main.addTimelineBlock(messages.studies, filteredEducation);
 		if (filteredProjects.length > 0)
 			main.addProject(messages.projects, filteredProjects);
-		if (filteredEducation.length > 0)
+		if (filteredCompetition.length > 0)
 			main.addTimelineBlock(messages.contests, filteredCompetition);
 		if (filteredVolunteering.length > 0)
 			main.addTimelineBlock(messages.volunteering, filteredVolunteering);
