@@ -23,6 +23,7 @@ services:
       - WEBSITE_SECRET=${WEBSITE_SECRET}
       - DATABASE_URL=mongodb://database/website
       - PUBLIC_CMS_URL=https://cms.${DOMAIN_NAME}
+      - PUBLIC_DOMAIN_NAME=https://${DOMAIN_NAME}
     depends_on:
       - database
     networks:

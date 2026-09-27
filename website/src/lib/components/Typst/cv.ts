@@ -46,6 +46,7 @@ export function toTypstObject(object: any): string {
 }
 
 import type { SerializedEditorState, SerializedLexicalNode } from "@payloadcms/richtext-lexical/lexical";
+import { env } from "$env/dynamic/public";
 
 function richElToTypstObject(object: SerializedLexicalNode) {
   console.log(object)
@@ -198,7 +199,7 @@ ${this.header}
     this.addBlock(title, items.map(pipe))
   }
   setHeader(name: string, avatar_name: string, contactInfos: { icon: string; name: string; link: string; }[], socials: { icon: string; name: string; link: string; }[]) {
-    this.header = `#header((url:"/${avatar_name}",dx:0%,dy:0%,scale:1.1),"${name}","${name}",${toTypstObject(contactInfos)}, ${toTypstObject(socials)})`
+    this.header = `#header((url:"/${avatar_name}",dx:0%,dy:0%,scale:1.1),"${name}","${name}",${toTypstObject(contactInfos)}, ${toTypstObject([...socials, { name: env.PUBLIC_DOMAIN_NAME!, link: env.PUBLIC_DOMAIN_NAME!, icon: "globe" }])})`
   }
 
 }
