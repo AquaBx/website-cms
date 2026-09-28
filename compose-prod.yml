@@ -7,6 +7,7 @@ services:
       dockerfile: ./Dockerfile
       target: cms
     environment:
+      - HOSTNAME=0.0.0.0
       - WEBSITE_SECRET=${WEBSITE_SECRET}
       - DATABASE_URL=mongodb://database/website
       - GITHUB_TOKEN=${GITHUB_TOKEN}
