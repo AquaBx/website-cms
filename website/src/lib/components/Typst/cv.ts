@@ -82,11 +82,11 @@ export class CV {
     this.description = ""
   }
 
-  content(lang: string) {
+  content(size:number,lang: string) {
     return `
 #import "template.typ": entry_item,header,section_title,tag,tags_line
 #set page(
-  height: ${100}cm,
+  height: ${size}cm,
   width: 21.0cm,
   margin: (x: 0cm, top: 0cm, bottom: 0cm),
   fill: white,

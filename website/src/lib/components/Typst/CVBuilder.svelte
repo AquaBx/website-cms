@@ -41,6 +41,7 @@
 	}: CVBuilderProps = $props();
 
 	let resume = $state("");
+	let size = $state(80);
 	let selectedProjects: string[] = $state([]);
 	let selectedWork: string[] = $state([]);
 	let selectedEducation: string[] = $state([]);
@@ -116,7 +117,7 @@
 				main.addTag(tag);
 			});
 		}
-		return main.content(locale);
+		return main.content(size,locale);
 	});
 </script>
 
@@ -126,6 +127,7 @@
 	>
 		<h2 class="text-xl font-bold">Sélectionner les éléments à inclure</h2>
 
+		<input type="number" bind:value={size} />
 		<input type="text" bind:value={resume} />
 		<Section
 			title={messages.work}
